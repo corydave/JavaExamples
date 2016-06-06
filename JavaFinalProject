@@ -1,0 +1,62 @@
+/*
+ * Code is originally from:
+ * http://way2java.com/awt-components/java-awt-button-%E2%80%93-learning-gui-%E2%80%93-8-steps/
+ * Parts are modified to show how to output in the console and track global variables
+ */
+
+import java.awt.*;
+import java.awt.event.*;
+public class ButtonDemo1 extends Frame implements ActionListener
+{
+    Button redBut, greenBut, closeBut;
+    int redCounter = 0;
+    int greenCounter= 0;
+
+    public ButtonDemo1()
+    {
+        setLayout(new FlowLayout());
+
+        redBut = new Button("RED");
+        greenBut = new Button("GREEN");
+        closeBut = new Button("CLOSE");
+
+        redBut.addActionListener(this);
+        greenBut.addActionListener(this);
+        closeBut.addActionListener(this);
+
+        redBut.setForeground(Color.red);
+        greenBut.setForeground(Color.green);
+        closeBut.setForeground(Color.black);
+
+        add(redBut);
+        add(greenBut);
+        add(closeBut);
+
+        setTitle("Buttons in Action");
+        setSize(300, 300);
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e)
+    {
+        String str = e.getActionCommand();
+
+        if(str.equals("RED")) {
+            setBackground(Color.red);
+            redCounter++;
+        }
+        else if(str.equals("GREEN")) {
+            setBackground(Color.green);
+            greenCounter++;
+        }
+        else if(str.equals("CLOSE")) {
+            System.out.println("RED: " + redCounter + " GREEN: " + greenCounter);
+            System.exit(0);
+        }
+    }
+
+    public static void main(String args[])
+    {
+        new ButtonDemo1();
+    }
+}
